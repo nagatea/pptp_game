@@ -15,14 +15,15 @@ let game;
 let keyManager;
 
 const init = _ =>{
-    loadImage("title", "draft/title.png");
-    loadImage("ready", "draft/game1.png");
-    loadImage("game", "res/game.png");
-    loadImage("hukidashi1", "res/hukidashi1.png");
     scene = SCENE.Title;
     keyManager = new KeyManager();
     ready = new Ready(3);
     game = new Game();
+    loadImage("title", "draft/title.png");
+    loadImage("ready", "draft/game1.png");
+    loadImage("game", "res/game.png");
+    loadImage("hukidashi1", "res/hukidashi1.png");
+    loadImages("res/animal");
     window.requestAnimationFrame(step);
 }
 

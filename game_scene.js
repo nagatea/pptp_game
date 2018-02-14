@@ -13,9 +13,9 @@ let tmpNum = 0;
 class Game{
     constructor(){
         data = [
-            { name : "パンダ", src : "res/panda.png", isAppear : false , round : 0},
-            { name : "コアラ", src : "res/koara.png", isAppear : false , round : 0},
-            { name : "タスマニアタイガー", src : "res/koara.png", isAppear : false , round : 0}
+            { name : "パンダ", key : "panda", isAppear : false , round : 0},
+            { name : "コアラ", key : "koara", isAppear : false , round : 0},
+            { name : "タスマニアタイガー", key : "TasmaniaTiger", isAppear : false , round : 0}
         ];
         this.element = data.length;
         this.nowNumber = 0;
@@ -46,6 +46,7 @@ class Game{
 
     draw(){
         if (this.isHukidashi1) drawImage("hukidashi1", 60, 300, 325, 100);
+        drawImage(this.nowData.key, 385, 30, 200, 235);
         this.text = this.nowData.name + "だ～！";
         this.len = this.text.length;
         context.globalAlpha = 1.0;
