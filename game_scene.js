@@ -34,7 +34,7 @@ class Game{
     }
 
     step(){
-        if (getKeys().enter == true) this.choiced = false;
+        if (keyManager.isJustPressed('enter')) this.choiced = false;
         if (!this.choiced){
             this.choiced = true;
             tmpNum++;

@@ -12,6 +12,7 @@ var SCENE = {
 let scene;
 let ready;
 let game;
+let keyManager;
 
 const init = _ =>{
     loadImage("title", "draft/title.png");
@@ -19,6 +20,7 @@ const init = _ =>{
     loadImage("game", "res/game.png");
     loadImage("hukidashi1", "res/hukidashi1.png");
     scene = SCENE.Title;
+    keyManager = new KeyManager();
     ready = new Ready(3);
     game = new Game();
     window.requestAnimationFrame(step);
@@ -26,6 +28,7 @@ const init = _ =>{
 
 const step = _ =>{
     time++;
+    keyManager.update();
     if(scene == SCENE.Title){
         if (getKeys().enter == true) scene = SCENE.Ready;
     }else if (scene == SCENE.Ready){
