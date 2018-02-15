@@ -77,6 +77,7 @@ class Game{
                 popuko.changeState(STATE.Moumita);
                 if(this.nowData.isAppear){
                     this.isSuccess = true;
+                    this.nowData.round = round.getRound();
                 }else{
                     this.failedType = true;
                     this.isFailed = true;
