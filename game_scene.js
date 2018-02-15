@@ -20,6 +20,7 @@ let round;
 let score;
 let kawaii;
 let moumita;
+let timer;
 
 class Game{
     constructor(){
@@ -46,6 +47,7 @@ class Game{
         this.len = 0;
         this.textSize = "0px";
         this.time = 0;
+        this.timer = 420;
         popuko = new Popuko();
         round = new Round();
         score = new Score();
@@ -58,6 +60,7 @@ class Game{
 
     judge(){
         if (this.time == 0){
+            this.isJudge = true;
             this.isHukidashi1 = false;
             if(this.kawaii){
                 popuko.changeState(STATE.Kawaii);
@@ -82,6 +85,7 @@ class Game{
 
         }
         this.time++;
+        if(this.isSuccess) score.addScore(Math.floor(100 * round.getRound() * (this.timer / 100) / 60))
         if (this.time > 60){
             this.time = 0;
             if(this.kawaii){
@@ -92,6 +96,8 @@ class Game{
             }
             this.isSuccess = false;
             this.isHukidashi1 = true;
+            this.isJudge = false;
+            this.timer = 420;
             this.choiced = false;
             popuko.changeState(STATE.Normal);
         }
@@ -102,12 +108,14 @@ class Game{
         if (!this.isFailed){
             if (!this.choiced){
                 this.choiced = true;
-                tmpNum++;
-                console.log(tmpNum);
                 round.countUp();
                 this.isHukidashi1 = true;
                 this.nowData = this.nextData;
                 this.choice();
+            }
+            if(this.timer > 0 && !this.isJudge){
+                this.timer--;
+                console.log(this.timer);
             }
             if (keyManager.isJustPressed('up')) this.kawaii = true;
             if (keyManager.isJustPressed('down')) this.moumita = true;
@@ -115,7 +123,7 @@ class Game{
                 this.judge();
             } 
         }else{
-
+            
         } 
     }
 

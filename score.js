@@ -8,8 +8,12 @@ class Score{
 
     }
 
+    addScore(point){
+        this.score = this.score + point;
+    }
+
     draw(){
-        this.text = "SCORE : 0000000" + this.score;
+        this.text = "SCORE : " + this.score;
         context.globalAlpha = 1.0;
         context.fillStyle = "black";
         context.font = "20px 'Agency'";
