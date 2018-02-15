@@ -9,6 +9,7 @@ let text;
 let len;
 let textSize;
 let tmpNum = 0;
+let popuko;
 
 class Game{
     constructor(){
@@ -26,6 +27,7 @@ class Game{
         this.text = "";
         this.len = 0;
         this.textSize = "0px";
+        popuko = new Popuko();
     }
 
     choice(){
@@ -45,6 +47,7 @@ class Game{
     }
 
     draw(){
+        popuko.draw();
         if (this.isHukidashi1) drawImage("hukidashi1", 60, 300, 325, 100);
         drawImage(this.nowData.key, 385, 30, 200, 235);
         this.text = this.nowData.name + "だ～！";

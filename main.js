@@ -23,6 +23,9 @@ const init = _ =>{
     loadImage("ready", "draft/game1.png");
     loadImage("game", "res/game.png");
     loadImage("hukidashi1", "res/hukidashi1.png");
+    loadImage("popuko1", "res/popuko1.png");
+    loadImage("popuko2", "res/popuko2.png");
+    loadImage("popuko3", "res/popuko3.png");
     loadImages("res/animal");
     window.requestAnimationFrame(step);
 }
