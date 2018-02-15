@@ -5,6 +5,7 @@ let choiced;
 let nowData;
 let nextData;
 let isHukidashi1;
+let isHukidashi2;
 let text;
 let len;
 let textSize;
@@ -24,6 +25,7 @@ class Game{
         this.nextData = data[1];
         this.choiced = true;
         this.isHukidashi1 = true;
+        this.isHukidashi2 = true;
         this.text = "";
         this.len = 0;
         this.textSize = "0px";
@@ -49,7 +51,8 @@ class Game{
     draw(){
         popuko.draw();
         if (this.isHukidashi1) drawImage("hukidashi1", 60, 300, 325, 100);
-        drawImage(this.nowData.key, 385, 30, 200, 235);
+        if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
+        drawImage(this.nowData.key, 395, 30, 200, 235);
         this.text = this.nowData.name + "だ～！";
         this.len = this.text.length;
         context.globalAlpha = 1.0;
