@@ -9,7 +9,9 @@ let isHukidashi2;
 let isJudge;
 let isSuccess;
 let isFailed;
+let failedType;
 let text;
+let text2;
 let len;
 let textSize;
 let tmpNum = 0;
@@ -38,7 +40,9 @@ class Game{
         this.moumita = false;
         this.isSuccess = false;
         this.isFailed = false;
+        this.failedType = false;
         this.text = "";
+        this.text2 = "";
         this.len = 0;
         this.textSize = "0px";
         this.time = 0;
@@ -62,6 +66,7 @@ class Game{
                     this.nowData.isAppear = true;
                     this.nowData.round = round.getRound();
                 }else{
+                    this.failedType = false;
                     this.isFailed = true;
                 }
             }
@@ -70,6 +75,7 @@ class Game{
                 if(this.nowData.isAppear){
                     this.isSuccess = true;
                 }else{
+                    this.failedType = true;
                     this.isFailed = true;
                 }
             }
@@ -129,19 +135,27 @@ class Game{
                 context.fillStyle = "black";
                 this.textSize = Math.floor(250/this.len) + "px";
                 context.font = this.textSize + " 'Agency'";
-                context.textAlign = "center";
-                context.fillText(this.text, 250, 380 - this.len*2);
+                context.textAlign = "left";
+                context.fillText(this.text, 115, 380 - this.len*2);
             }
         }else{
+            if (this.failedType){
+                this.text = "残念～" + this.nowData.name + "は";
+                this.text2 = "まだ出てきてませ～ん";
+            }else{
+                drawImage("hukidashi1", 60, 300, 325, 100);
+                this.text = "残念～" + this.nowData.name + "は";
+                this.text2 = this.nowData.round + "回目に出てきました～";
+            }
             drawImage("hukidashi1", 60, 300, 325, 100);
-            this.text = "残念～" + this.nowData.name + "は" + this.nowData.round + "回目に出てきました～";
-            this.len = this.text.length;
+            this.len = Math.max(this.text.length, this.text2.length);
             context.globalAlpha = 1.0;
             context.fillStyle = "black";
             this.textSize = Math.floor(250/this.len) + "px";
             context.font = this.textSize + " 'Agency'";
-            context.textAlign = "center";
-            context.fillText(this.text, 250, 380 - this.len*2);
+            context.textAlign = "left";
+            context.fillText(this.text, 115, 365 - this.len*2);
+            context.fillText(this.text2, 115, 400 - this.len*2);
         }
         if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
     }
