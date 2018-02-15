@@ -1,18 +1,21 @@
-let STATE;
+let STATE = {
+    Normal : 1,
+    Kawaii : 2,
+    Moumita : 3
+};
 let state;
 
 class Popuko{
     constructor(){
-        this.STATE = {
-            Normal : 1,
-            Kawaii : 2,
-            Moumita : 3
-        };
-        this.state = this.STATE.Normal;
+        this.state = STATE.Normal;
     }
 
     step(){
 
+    }
+
+    changeState(state){
+        this.state = state;
     }
 
     draw(){

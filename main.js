@@ -28,6 +28,8 @@ const init = _ =>{
     loadImage("popuko1", "res/popuko1.png");
     loadImage("popuko2", "res/popuko2.png");
     loadImage("popuko3", "res/popuko3.png");
+    loadImage("success", "res/success.png");
+    loadImage("failed", "res/failed.png");
     loadImages("res/animal");
     window.requestAnimationFrame(step);
 }

@@ -1,7 +1,7 @@
 let count;
 class Round{
     constructor(){
-        this.count = 0;
+        this.count = 1;
         this.text = "";
     }
 
@@ -10,6 +10,10 @@ class Round{
 
     countUp(){
         this.count++;
+    }
+
+    getRound(){
+        return this.count;
     }
 
     draw(){
