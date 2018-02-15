@@ -12,6 +12,7 @@ let textSize;
 let tmpNum = 0;
 let popuko;
 let round;
+let score;
 
 class Game{
     constructor(){
@@ -32,6 +33,7 @@ class Game{
         this.textSize = "0px";
         popuko = new Popuko();
         round = new Round();
+        score = new Score();
     }
 
     choice(){
@@ -54,6 +56,7 @@ class Game{
     draw(){
         popuko.draw();
         round.draw();
+        score.draw();
         if (this.isHukidashi1) drawImage("hukidashi1", 60, 300, 325, 100);
         if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
         drawImage(this.nowData.key, 395, 30, 200, 235);
