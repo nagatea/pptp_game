@@ -10,17 +10,18 @@ var SCENE = {
 };
 
 let scene;
+let title;
 let ready;
 let game;
 let keyManager;
 
 const init = _ =>{
-    //scene = SCENE.Title;
-    scene = SCENE.Game; //debug
+    scene = SCENE.Title;
     keyManager = new KeyManager();
+    title = new Title();
     ready = new Ready(3);
     game = new Game();
-    loadImage("title", "draft/title.png");
+    loadImage("title", "res/title.png");
     loadImage("ready", "draft/game1.png");
     loadImage("game", "res/game.png");
     loadImage("hukidashi1", "res/hukidashi1.png");
@@ -38,7 +39,7 @@ const step = _ =>{
     time++;
     keyManager.update();
     if(scene == SCENE.Title){
-        if (getKeys().enter == true) scene = SCENE.Ready;
+        title.step();
     }else if (scene == SCENE.Ready){
         ready.step();
         if (ready.isEnd()) scene = SCENE.Game;
@@ -53,7 +54,7 @@ const draw = _ =>{
     context.fillStyle = "black";
     context.clearRect(0, 0, 600, 400);
     if(scene == SCENE.Title){
-        drawImage("title", 0, 0, 600, 400);
+        title.draw();
     }else if (scene == SCENE.Ready){
         drawImage("ready", 0, 0, 600, 400);
         ready.draw();
