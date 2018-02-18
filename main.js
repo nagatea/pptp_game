@@ -14,10 +14,12 @@ let title;
 let ready;
 let game;
 let keyManager;
+let mouseManager;
 
 const init = _ =>{
     scene = SCENE.Title;
     keyManager = new KeyManager();
+    mouseManager = new MouseManager();
     title = new Title();
     ready = new Ready(3);
     game = new Game();
@@ -38,6 +40,7 @@ const init = _ =>{
 const step = _ =>{
     time++;
     keyManager.update();
+    mouseManager.update();
     if(scene == SCENE.Title){
         title.step();
     }else if (scene == SCENE.Ready){

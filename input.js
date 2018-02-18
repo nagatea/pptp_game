@@ -65,8 +65,10 @@ document.addEventListener("keydown", KeyDown);
 if(document.addEventListener){
     document.addEventListener("mousemove" , MouseMove);
     document.addEventListener("mousedown" , MouseUpDown);
+    document.addEventListener("mouseup", MouseUpDown);
 }
 else if(document.attachEvent){
     document.attachEvent("onmousemove" , MouseMove);
     document.attachEvent("onmouseup" , MouseUpDown);
+    document.attachEvent("mouseup", MouseUpDown);
 }
