@@ -15,6 +15,7 @@ let ready;
 let game;
 let keyManager;
 let mouseManager;
+let grid = {};
 
 const init = _ =>{
     scene = SCENE.Title;
@@ -41,6 +42,7 @@ const step = _ =>{
     time++;
     keyManager.update();
     mouseManager.update();
+    grid = mouseManager.getNowMouse();
     if(scene == SCENE.Title){
         title.step();
     }else if (scene == SCENE.Ready){
