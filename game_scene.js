@@ -137,9 +137,13 @@ class Game{
         drawImage(this.nowData.key, 395, 30, 200, 235);
         if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
 
-        context.fillStyle = "#FFFFFF"
+        if (this.isJudge){
+            context.fillStyle = "#D0D0D0";
+        }else{
+            context.fillStyle = "#FFFFFF";
+        }
         context.fillRect(410,280,165,45);
-        if (grid.x > 410 && grid.x < 575 && grid.y > 280 && grid.y < 325){
+        if (grid.x > 410 && grid.x < 575 && grid.y > 280 && grid.y < 325 || this.kawaii){
             context.strokeStyle = "red";
         }else{
             context.strokeStyle = "black";
@@ -150,10 +154,13 @@ class Game{
         context.font = "30px 'Agency'";
         context.textAlign = "center";
         context.fillText("かわいい！", 495, 315);
-
-        context.fillStyle = "#FFFFFF"
+        if (this.isJudge){
+            context.fillStyle = "#D0D0D0";
+        }else{
+            context.fillStyle = "#FFFFFF";
+        }
         context.fillRect(410,340,165,45);
-        if (grid.x > 410 && grid.x < 575 && grid.y > 340 && grid.y < 385){
+        if (grid.x > 410 && grid.x < 575 && grid.y > 340 && grid.y < 385 || this.moumita){
             context.strokeStyle = "red";
         }else{
             context.strokeStyle = "black";
