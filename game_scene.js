@@ -116,10 +116,12 @@ class Game{
             }
             if(this.timer > 0 && !this.isJudge){
                 this.timer--;
-                console.log(this.timer);
+                //console.log(this.timer);
             }
             if (keyManager.isJustPressed('up')) this.kawaii = true;
             if (keyManager.isJustPressed('down')) this.moumita = true;
+            if (grid.x > 410 && grid.x < 575 && grid.y > 280 && grid.y < 325 && mouseManager.isJustPressed('left')) this.kawaii = true;
+            if (grid.x > 410 && grid.x < 575 && grid.y > 340 && grid.y < 385 && mouseManager.isJustPressed('left')) this.moumita = true;
             if (this.kawaii || this.moumita){
                 this.judge();
             } 
@@ -133,6 +135,36 @@ class Game{
         round.draw();
         score.draw();
         drawImage(this.nowData.key, 395, 30, 200, 235);
+        if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
+
+        context.fillStyle = "#FFFFFF"
+        context.fillRect(410,280,165,45);
+        if (grid.x > 410 && grid.x < 575 && grid.y > 280 && grid.y < 325){
+            context.strokeStyle = "red";
+        }else{
+            context.strokeStyle = "black";
+        }
+        context.strokeRect(410,280,165,45);
+        context.globalAlpha = 1.0;
+        context.fillStyle = "black";
+        context.font = "30px 'Agency'";
+        context.textAlign = "center";
+        context.fillText("かわいい！", 495, 315);
+
+        context.fillStyle = "#FFFFFF"
+        context.fillRect(410,340,165,45);
+        if (grid.x > 410 && grid.x < 575 && grid.y > 340 && grid.y < 385){
+            context.strokeStyle = "red";
+        }else{
+            context.strokeStyle = "black";
+        }
+        context.strokeRect(410,340,165,45);
+        context.globalAlpha = 1.0;
+        context.fillStyle = "black";
+        context.font = "30px 'Agency'";
+        context.textAlign = "center";
+        context.fillText("もう見た", 495, 373);
+
         if (this.isSuccess) drawImage("success", 395, 40, 200, 200);
         if (this.isFailed) drawImage("failed", 395, 40, 200, 200);
         if (!this.isFailed){
@@ -166,7 +198,6 @@ class Game{
             context.fillText(this.text, 115, 365 - this.len*2);
             context.fillText(this.text2, 115, 400 - this.len*2);
         }
-        if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
     }
 
 }
