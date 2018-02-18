@@ -53,6 +53,16 @@ const MouseUpDown = e =>{
     mouse.left=((data & 0x0001) ? true : false);
     mouse.right=((data & 0x0002) ? true : false);
     mouse.center=((data & 0x0002) ? true : false);
+    console.log(mouse);
+}
+const TapDown = e =>{
+    mouse.left = true;
+    let touchObject = e.changedTouches[0];
+	mouse.x = touchObject.pageX ;
+	mouse.y = touchObject.pageY ;
+}
+const TapUp = _ =>{
+    mouse.left = false;
 }
 const getMouse = _ =>{
     return mouse;
@@ -63,12 +73,22 @@ const getKeys = _ =>{
 document.addEventListener("keyup", KeyUp);
 document.addEventListener("keydown", KeyDown);
 if(document.addEventListener){
-    document.addEventListener("mousemove" , MouseMove);
-    document.addEventListener("mousedown" , MouseUpDown);
-    document.addEventListener("mouseup", MouseUpDown);
+    if (window.ontouchstart === undefined){
+        document.addEventListener("mousemove" , MouseMove);
+        document.addEventListener("mousedown", MouseUpDown);
+        document.addEventListener("mouseup", MouseUpDown);
+    }else{
+        document.addEventListener("touchstart", TapDown);
+        document.addEventListener("touchend", TapUp);
+    }
 }
 else if(document.attachEvent){
-    document.attachEvent("onmousemove" , MouseMove);
-    document.attachEvent("onmouseup" , MouseUpDown);
-    document.attachEvent("mouseup", MouseUpDown);
+    if (window.ontouchstart === undefined){
+        document.attachEvent("mousemove" , MouseMove);
+        document.attachEvent("mousedown", MouseUpDown);
+        document.attachEvent("mouseup", MouseUpDown);
+    }else{
+        document.attachEvent("touchstart", TapDown);
+        document.attachEvent("touchend", TapUp);
+    }
 }
