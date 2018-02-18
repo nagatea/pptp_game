@@ -45,8 +45,8 @@ const KeyUp = e => {
   else if(e.keyCode == 32) keys.space = false;
 };
 const MouseMove = e =>{
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    mouse.x = e.clientX - 7;
+    mouse.y = e.clientY - 7;
 }
 const MouseUpDown = e =>{
     const data = e.buttons;
