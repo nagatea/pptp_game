@@ -131,6 +131,7 @@ class Game{
     }
 
     draw(){
+        drawImage("game", 0, 0, 600, 400);
         popuko.draw();
         round.draw();
         score.draw();

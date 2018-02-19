@@ -21,6 +21,7 @@ class Ready{
     }
 
     draw(){
+        drawImage("ready", 0, 0, 600, 400);
         context.globalAlpha = 1.0;
         context.fillStyle = "black";
         context.font = "80px 'Agency'";

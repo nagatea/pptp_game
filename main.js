@@ -19,7 +19,7 @@ let mouseManager;
 let grid = {};
 
 const init = _ =>{
-    scene = SCENE.Over;
+    scene = SCENE.Title;
     keyManager = new KeyManager();
     mouseManager = new MouseManager();
     title = new Title();
@@ -66,10 +66,8 @@ const draw = _ =>{
     if(scene == SCENE.Title){
         title.draw();
     }else if (scene == SCENE.Ready){
-        drawImage("ready", 0, 0, 600, 400);
         ready.draw();
     }else if (scene == SCENE.Game){
-        drawImage("game", 0, 0, 600, 400);
         game.draw();
     }else if (scene == SCENE.Over){
         over.draw();
