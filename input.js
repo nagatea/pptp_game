@@ -20,6 +20,8 @@ mouse.x = 0;
 mouse.y = 0;
 const KeyDown = e => {
     if(e.keyCode===90)keys.z=true;
+    else if(e.keyCode===82)keys.r=true;
+    else if(e.keyCode===84)keys.t=true;
     else if(e.keyCode===67)keys.c=true;
     else if(e.keyCode >=48 && e.keyCode<=57) keys[String(e.keyCode-48)] = true;
     else if(e.keyCode >= 65 && e.keyCode <= 90) keys[String(e.keyCode-65+97)]=true;
@@ -33,6 +35,8 @@ const KeyDown = e => {
 };
 const KeyUp = e => {
   if(e.keyCode===90)keys.z=false;
+  else if(e.keyCode===82)keys.r=false;
+  else if(e.keyCode===84)keys.t=false;
   else if(e.keyCode===67)keys.c=false;
   else if(e.keyCode >=48 && e.keyCode<=57) keys[String(e.keyCode-48)] = false;
   else if(e.keyCode >= 65 && e.keyCode <= 90){console.log(String(e.keyCode-65+97)); keys[String(e.keyCode-65+97)]=false;}
