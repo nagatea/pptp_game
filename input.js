@@ -57,7 +57,6 @@ const MouseUpDown = e =>{
     mouse.left=((data & 0x0001) ? true : false);
     mouse.right=((data & 0x0002) ? true : false);
     mouse.center=((data & 0x0002) ? true : false);
-    console.log(mouse);
 }
 const TapDown = e =>{
     mouse.left = true;
