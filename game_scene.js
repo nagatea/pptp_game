@@ -8,7 +8,7 @@ let isHukidashi1;
 let isHukidashi2;
 let isJudge;
 let isSuccess;
-let isFailed;
+let isGameOver;
 let isJudging;
 let failedType;
 let text;
@@ -22,6 +22,7 @@ let score;
 let kawaii;
 let moumita;
 let timer;
+let check;
 
 class Game{
     constructor(){
@@ -42,7 +43,7 @@ class Game{
         this.kawaii = false;
         this.moumita = false;
         this.isSuccess = false;
-        this.isFailed = false;
+        this.isGameOver = false;
         this.failedType = false;
         this.text = "";
         this.text2 = "";
@@ -50,6 +51,7 @@ class Game{
         this.textSize = "0px";
         this.time = 0;
         this.timer = 420;
+        this.check = false;
         popuko = new Popuko();
         round = new Round();
         score = new Score();
@@ -58,6 +60,15 @@ class Game{
     choice(){
         this.nowNumber = Math.floor(Math.random()*this.element);
         this.nextData = data[this.nowNumber];
+    }
+
+    dataCheck(){
+        for(let i=0;i<this.element;i++){
+            if (!data[i].isAppear){
+                return false;
+            }
+        }
+        return true;
     }
 
     judge(){
@@ -70,9 +81,11 @@ class Game{
                     this.isSuccess = true;
                     this.nowData.isAppear = true;
                     this.nowData.round = round.getRound();
+                    this.check = this.dataCheck();
+                    if (this.check) this.isGameOver = true;
                 }else{
                     this.failedType = false;
-                    this.isFailed = true;
+                    this.isGameOver = true;
                 }
             }
             if(this.moumita){
@@ -82,7 +95,7 @@ class Game{
                     this.nowData.round = round.getRound();
                 }else{
                     this.failedType = true;
-                    this.isFailed = true;
+                    this.isGameOver = true;
                 }
             }
 
@@ -110,7 +123,7 @@ class Game{
 
     step(){
         //if (keyManager.isJustPressed('enter')) this.choiced = false;
-        if (!this.isFailed){
+        if (!this.isGameOver){
             if (!this.choiced){
                 this.choiced = true;
                 round.countUp();
@@ -132,7 +145,12 @@ class Game{
         }else{
             if (this.time <= 330) this.time++;
             if (this.time == 90) this.isJudging = true;
-            if (this.time == 330) scene = SCENE.Over;
+            if (this.check && this.isJudging){
+                if (this.time < 270) score.addScore(Math.floor(5000000000000000 / 180))
+                if (this.time == 330) scene = SCENE.Clear;
+            }else{
+                if (this.time == 330) scene = SCENE.Over;
+            }
         } 
     }
 
@@ -184,9 +202,9 @@ class Game{
         context.textAlign = "center";
         context.fillText("もう見た", 495, 373);
 
-        if (this.isSuccess && this.isJudging) drawImage("success", 395, 40, 200, 200);
-        if (this.isFailed && this.isJudging) drawImage("failed", 395, 40, 200, 200);
-        if (!this.isFailed){
+        if ((this.isSuccess || this.check) && this.isJudging) drawImage("success", 395, 40, 200, 200);
+        if (this.isGameOver && !this.check && this.isJudging) drawImage("failed", 395, 40, 200, 200);
+        if (!this.isGameOver){
             if (this.isHukidashi1) {
                 drawImage("hukidashi1", 60, 300, 325, 100);
                 this.text = this.nowData.name + "だ～！";
@@ -200,13 +218,18 @@ class Game{
             }
         }else{
             if (this.isJudging){
-                if (this.failedType){
-                    this.text = "残念～" + this.nowData.name + "は";
-                    this.text2 = "まだ出てきてませ～ん";
+                if (this.check){
+                    this.text = "クリア～！";
+                    this.text2 = "おめでとう！！！";
                 }else{
-                    drawImage("hukidashi1", 60, 300, 325, 100);
-                    this.text = "残念～" + this.nowData.name + "は";
-                    this.text2 = this.nowData.round + "回目に出てきました～";
+                    if (this.failedType){
+                        this.text = "残念～" + this.nowData.name + "は";
+                        this.text2 = "まだ出てきてませ～ん";
+                    }else{
+                        drawImage("hukidashi1", 60, 300, 325, 100);
+                        this.text = "残念～" + this.nowData.name + "は";
+                        this.text2 = this.nowData.round + "回目に出てきました～";
+                    }
                 }
                 drawImage("hukidashi1", 60, 300, 325, 100);
                 this.len = Math.max(this.text.length, this.text2.length);
