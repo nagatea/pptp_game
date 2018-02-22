@@ -135,6 +135,11 @@ class Game{
         popuko.draw();
         round.draw();
         score.draw();
+        context.globalAlpha = 1.0;
+        context.fillStyle = "black";
+        context.font = "20px 'Agency'";
+        context.textAlign = "left";
+        context.fillText("Time:" + (this.timer/60).toFixed(3), 200, 20);
         drawImage(this.nowData.key, 395, 30, 200, 235);
         if (this.isHukidashi2) drawImage("hukidashi2", 360, 260, 240, 140);
 
