@@ -9,6 +9,7 @@ let isHukidashi2;
 let isJudge;
 let isSuccess;
 let isFailed;
+let isJudging;
 let failedType;
 let text;
 let text2;
@@ -37,6 +38,7 @@ class Game{
         this.isHukidashi1 = true;
         this.isHukidashi2 = true;
         this.isJudge = false;
+        this.isJudging = false;
         this.kawaii = false;
         this.moumita = false;
         this.isSuccess = false;
@@ -86,8 +88,9 @@ class Game{
 
         }
         this.time++;
-        if(this.isSuccess) score.addScore(Math.floor(100 * round.getRound() * (this.timer / 100) / 60))
-        if (this.time > 60){
+        if (this.time == 30) this.isJudging = true;
+        if(this.isSuccess && this.time >= 30) score.addScore(Math.floor(100 * round.getRound() * (this.timer / 100) / 60))
+        if (this.time > 90){
             this.time = 0;
             if(this.kawaii){
                 this.kawaii = false;
@@ -98,6 +101,7 @@ class Game{
             this.isSuccess = false;
             this.isHukidashi1 = true;
             this.isJudge = false;
+            this.isJudging = false;
             this.timer = 420;
             this.choiced = false;
             popuko.changeState(STATE.Normal);
@@ -126,7 +130,9 @@ class Game{
                 this.judge();
             } 
         }else{
-            
+            if (this.time <= 330) this.time++;
+            if (this.time == 90) this.isJudging = true;
+            if (this.time == 330) scene = SCENE.Over;
         } 
     }
 
@@ -178,8 +184,8 @@ class Game{
         context.textAlign = "center";
         context.fillText("もう見た", 495, 373);
 
-        if (this.isSuccess) drawImage("success", 395, 40, 200, 200);
-        if (this.isFailed) drawImage("failed", 395, 40, 200, 200);
+        if (this.isSuccess && this.isJudging) drawImage("success", 395, 40, 200, 200);
+        if (this.isFailed && this.isJudging) drawImage("failed", 395, 40, 200, 200);
         if (!this.isFailed){
             if (this.isHukidashi1) {
                 drawImage("hukidashi1", 60, 300, 325, 100);
@@ -193,23 +199,25 @@ class Game{
                 context.fillText(this.text, 115, 380 - this.len*2);
             }
         }else{
-            if (this.failedType){
-                this.text = "残念～" + this.nowData.name + "は";
-                this.text2 = "まだ出てきてませ～ん";
-            }else{
+            if (this.isJudging){
+                if (this.failedType){
+                    this.text = "残念～" + this.nowData.name + "は";
+                    this.text2 = "まだ出てきてませ～ん";
+                }else{
+                    drawImage("hukidashi1", 60, 300, 325, 100);
+                    this.text = "残念～" + this.nowData.name + "は";
+                    this.text2 = this.nowData.round + "回目に出てきました～";
+                }
                 drawImage("hukidashi1", 60, 300, 325, 100);
-                this.text = "残念～" + this.nowData.name + "は";
-                this.text2 = this.nowData.round + "回目に出てきました～";
+                this.len = Math.max(this.text.length, this.text2.length);
+                context.globalAlpha = 1.0;
+                context.fillStyle = "black";
+                this.textSize = Math.floor(250/this.len) + "px";
+                context.font = this.textSize + " 'Agency'";
+                context.textAlign = "left";
+                context.fillText(this.text, 115, 365 - this.len*2);
+                context.fillText(this.text2, 115, 400 - this.len*2);
             }
-            drawImage("hukidashi1", 60, 300, 325, 100);
-            this.len = Math.max(this.text.length, this.text2.length);
-            context.globalAlpha = 1.0;
-            context.fillStyle = "black";
-            this.textSize = Math.floor(250/this.len) + "px";
-            context.font = this.textSize + " 'Agency'";
-            context.textAlign = "left";
-            context.fillText(this.text, 115, 365 - this.len*2);
-            context.fillText(this.text2, 115, 400 - this.len*2);
         }
     }
 
