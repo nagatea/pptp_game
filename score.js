@@ -12,6 +12,10 @@ class Score{
         this.score = this.score + point;
     }
 
+    getScore(){
+        return this.score;
+    }
+
     draw(){
         this.text = "SCORE : " + this.score;
         context.globalAlpha = 1.0;
