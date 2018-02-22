@@ -5,7 +5,7 @@ class Clear{
 
     step(){
         if (grid.x > 470 && grid.x < 570 && grid.y > 285 && grid.y < 325 && mouseManager.isJustPressed('left') || keyManager.isJustPressed('t')){
-            location.assign("https://twitter.com/intent/tweet?text=%23pptp_game%20で" + score.getScore() + "点を獲得しました！(正解数:" + (round.getRound()-1) + ")%0a&url=http://pptp_game.nagatech.trap.show");
+            location.assign("https://twitter.com/intent/tweet?text=%23pptp_game%20で" + score.getScore() + "点を獲得しました！(正解数:" + round.getRound() + ")%0a&url=http://pptp_game.nagatech.trap.show");
         }
         if (grid.x > 470 && grid.x < 570 && grid.y > 335 && grid.y < 375 && mouseManager.isJustPressed('left') || keyManager.isJustPressed('r')){
             ready = new Ready(3);
@@ -22,7 +22,7 @@ class Clear{
         context.font = "30px 'Agency'";
         context.textAlign = "left";
         context.fillText("スコア : " + score.getScore(), 40, 315);
-        context.fillText("正解数 : " + (round.getRound() - 1), 40, 365);
+        context.fillText("正解数 : " + round.getRound(), 40, 365);
 
         context.font = "20px 'Agency'";
         context.textAlign = "center";
