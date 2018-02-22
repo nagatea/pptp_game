@@ -6,7 +6,8 @@ var SCENE = {
     Title : 1,
     Ready : 2,
     Game : 3,
-    Over : 4
+    Over : 4,
+    Clear : 5
 };
 
 let scene;
@@ -14,6 +15,7 @@ let title;
 let ready;
 let game;
 let over;
+let clear;
 let keyManager;
 let mouseManager;
 let grid = {};
@@ -26,10 +28,12 @@ const init = _ =>{
     ready = new Ready(3);
     game = new Game();
     over = new Over();
+    clear = new Clear();
     loadImage("title", "res/title.png");
     loadImage("ready", "draft/game1.png");
     loadImage("game", "res/game.png");
     loadImage("over", "res/over.png");
+    loadImage("clear", "res/clear.png");
     loadImage("hukidashi1", "res/hukidashi1.png");
     loadImage("hukidashi2", "res/hukidashi2.png");
     loadImage("popuko1", "res/popuko1.png");
@@ -55,6 +59,8 @@ const step = _ =>{
         game.step();
     }else if (scene == SCENE.Over){
         over.step();
+    }else if (scene == SCENE.Clear){
+        clear.step();
     }
     draw();
     window.requestAnimationFrame(step);
@@ -71,5 +77,7 @@ const draw = _ =>{
         game.draw();
     }else if (scene == SCENE.Over){
         over.draw();
+    }else if (scene == SCENE.Clear){
+        clear.draw();
     }
 }
