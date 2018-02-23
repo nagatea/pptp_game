@@ -1,4 +1,4 @@
-var data;
+let data;
 let element;
 let nowNumber;
 let choiced;
@@ -29,7 +29,34 @@ class Game{
         data = [
             { name : "パンダ", key : "panda", isAppear : false , round : 0},
             { name : "コアラ", key : "koara", isAppear : false , round : 0},
-            { name : "タスマニアタイガー", key : "TasmaniaTiger", isAppear : false , round : 0}
+            { name : "タスマニアタイガー", key : "tasmaniatiger", isAppear : false , round : 0},
+            { name : "カンガルー", key : "kangaru", isAppear : false , round : 0},
+            { name : "カモノハシ", key : "kamonohasi", isAppear : false , round : 0},
+            { name : "ウォンバット", key : "wonbat", isAppear : false , round : 0},
+            { name : "ワライカワセミ", key : "waraikawasemi", isAppear : false , round : 0},
+            { name : "タスマニアデビル", key : "tasmaniadevil", isAppear : false , round : 0},
+            { name : "ハリモグラ", key : "harimogura", isAppear : false , round : 0},
+            { name : "ディンゴ", key : "dingo", isAppear : false , round : 0},
+            { name : "ワラビー", key : "warabi", isAppear : false , round : 0},
+            { name : "エミュー", key : "emyu", isAppear : false , round : 0},
+            { name : "イリエワニ", key : "iriewani", isAppear : false , round : 0},
+            { name : "マーレーコッド", key : "marekoddo", isAppear : false , round : 0},
+            { name : "シードラゴン", key : "seadragon", isAppear : false , round : 0},
+            { name : "カクレクマノミ", key : "kakurekumanomi", isAppear : false , round : 0},
+            { name : "ヒクイドリ", key : "hikuidori", isAppear : false , round : 0},
+            { name : "コカトゥー", key : "kokato", isAppear : false , round : 0},
+            { name : "ボールパイソン", key : "python", isAppear : false , round : 0},
+            { name : "タイマイ", key : "taimai", isAppear : false , round : 0},
+            { name : "フクロネコ", key : "hukuroneko", isAppear : false , round : 0},
+            { name : "クォッカ", key : "kuokka", isAppear : false , round : 0},
+            { name : "ポッサム", key : "possamu", isAppear : false , round : 0},
+            { name : "フクロアリクイ", key : "hukuroarikui", isAppear : false , round : 0},
+            { name : "ミツスイ", key : "mitusui", isAppear : false , round : 0},
+            { name : "コトドリ", key : "kotodori", isAppear : false , round : 0},
+            { name : "フエガラス", key : "huegarasu", isAppear : false , round : 0},
+            { name : "ゴアナ", key : "goana", isAppear : false , round : 0},
+            { name : "フェアリーペンギン", key : "fairypengin", isAppear : false , round : 0},
+            { name : "バンディクート", key : "bandelikuto", isAppear : false , round : 0}
         ];
         this.element = data.length;
         this.nowNumber = 0;
