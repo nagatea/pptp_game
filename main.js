@@ -30,7 +30,7 @@ const init = _ =>{
     over = new Over();
     clear = new Clear();
     loadImage("title", "res/title.png");
-    loadImage("ready", "draft/game1.png");
+    loadImage("ready", "res/ready.png");
     loadImage("game", "res/game.png");
     loadImage("over", "res/over.png");
     loadImage("clear", "res/clear.png");

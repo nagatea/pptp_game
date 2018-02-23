@@ -26,7 +26,7 @@ class Ready{
         context.fillStyle = "black";
         context.font = "80px 'Agency'";
         context.textAlign = "center";
-        context.fillText(this.time, canvas.width/2, canvas.height/2);
+        context.fillText(this.time, canvas.width/2, canvas.height/2-25);
     }
 
     isEnd(){
