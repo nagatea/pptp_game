@@ -85,8 +85,25 @@ class Game{
     }
 
     choice(){
-        this.nowNumber = Math.floor(Math.random()*this.element);
-        this.nextData = data[this.nowNumber];
+        let po;
+        po = Math.floor(Math.random()*2);
+        if (po == 0){
+            for(let i=0;i<5;i++){
+                this.nowNumber = Math.floor(Math.random()*this.element);
+                this.nextData = data[this.nowNumber];
+                if (!this.nextData.isAppear){
+                    break;
+                }
+            }
+        }else{
+            for(let i=0;i<3;i++){
+                this.nowNumber = Math.floor(Math.random()*this.element);
+                this.nextData = data[this.nowNumber];
+                if (this.nextData.isAppear){
+                    break;
+                }
+            }
+        }  
     }
 
     dataCheck(){
